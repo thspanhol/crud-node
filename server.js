@@ -14,7 +14,7 @@ import { DatabasePostgres } from "./database-postgres.js";
 
 const server = fastify();
 
-await fastify.register(cors, { 
+await server.register(cors, { 
     origin: '*'
   });
 
