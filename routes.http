@@ -1,4 +1,4 @@
-POST http://localhost:3333/usuarios
+POST https://crud-node-a7h4.onrender.com/usuarios
 Content-Type: application/json
 
 {
@@ -9,11 +9,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3333/usuarios?search=
+GET https://crud-node-a7h4.onrender.com/usuarios?search=
 
 ###
 
-PUT http://localhost:3333/usuarios/1cb67a86-39c9-428f-aba4-08ea988893df
+PUT https://crud-node-a7h4.onrender.com/usuarios/1cb67a86-39c9-428f-aba4-08ea988893df
 Content-Type: application/json
 
 {
@@ -23,4 +23,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3333/usuarios/1cb67a86-39c9-428f-aba4-08ea988893df
+DELETE https://crud-node-a7h4.onrender.com/usuarios/1cb67a86-39c9-428f-aba4-08ea988893df

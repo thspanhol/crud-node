@@ -8,10 +8,15 @@
 // server.listen(3333)
 
 import { fastify } from "fastify";
+import cors from '@fastify/cors'
 // import { DatabaseMemory } from "./database-memory.js";
 import { DatabasePostgres } from "./database-postgres.js";
 
 const server = fastify();
+
+await fastify.register(cors, { 
+    origin: '*'
+  });
 
 // const database = new DatabaseMemory()
 const database = new DatabasePostgres()
