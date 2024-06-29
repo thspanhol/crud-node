@@ -1,0 +1,26 @@
+POST http://localhost:3333/usuarios
+Content-Type: application/json
+
+{
+    "nome": "Thales",
+    "email": "thspanhol@gmail.com",
+    "senha": "Teste01"
+}
+
+###
+
+GET http://localhost:3333/usuarios?search=
+
+###
+
+PUT http://localhost:3333/usuarios/1cb67a86-39c9-428f-aba4-08ea988893df
+Content-Type: application/json
+
+{
+    "nome": "Mika",
+    "email": "thspanhol123@gmail.com",
+    "senha": "Teste01"
+}
+
+###
+DELETE http://localhost:3333/usuarios/1cb67a86-39c9-428f-aba4-08ea988893df
