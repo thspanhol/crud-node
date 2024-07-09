@@ -26,10 +26,12 @@ const openCorsOptions = {
 
 await server.register(cors, openCorsOptions);
 
+await server.register(cors, restrictedCorsOptions);
+
 // const database = new DatabaseMemory()
 const database = new DatabasePostgres()
 
-server.post('/usuarios', { preHandler: [cors(restrictedCorsOptions)] }, async (request, reply) => {
+server.post('/usuarios', async (request, reply) => {
     const { nome, email, senha } = request.body
 
     await database.create({
@@ -49,7 +51,7 @@ server.get('/usuarios', async (request) => {
     return usuarios
 })
 
-server.put('/usuarios/:id', { preHandler: [cors(restrictedCorsOptions)] }, async (request, reply) => {
+server.put('/usuarios/:id', async (request, reply) => {
     const usuarioId = request.params.id
     const { nome, email, senha } = request.body
 
@@ -62,7 +64,7 @@ server.put('/usuarios/:id', { preHandler: [cors(restrictedCorsOptions)] }, async
     return reply.status(204).send()
 })
 
-server.delete('/usuarios/:id', { preHandler: [cors(restrictedCorsOptions)] }, async (request, reply) => {
+server.delete('/usuarios/:id', async (request, reply) => {
     const usuarioId = request.params.id
 
     await database.delete(usuarioId)
