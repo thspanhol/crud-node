@@ -14,22 +14,22 @@ import { DatabasePostgres } from "./database-postgres.js";
 
 const server = fastify();
 
-const restrictedCorsOptions = {
-    origin: 'https://thspanhol.github.io',
-    methods: ['POST', 'PUT', 'DELETE'],
-};
-
-const openCorsOptions = {
-    origin: '*',
-    methods: ['GET'],
-};
-
-await server.register(cors, openCorsOptions);
-
-await server.register(cors, restrictedCorsOptions);
+await server.register(cors, {
+  origin: '*',
+  methods: ['GET'],
+});
 
 // const database = new DatabaseMemory()
 const database = new DatabasePostgres()
+
+server.addHook('preHandler', async (request, reply) => {
+  const allowedOrigins = ['https://thspanhol.github.io'];
+  const origin = request.headers.origin;
+
+  if (request.method !== 'GET' && !allowedOrigins.includes(origin)) {
+    reply.code(403).send({ error: 'Origin not allowed' });
+  }
+});
 
 server.post('/usuarios', async (request, reply) => {
     const { nome, email, senha } = request.body
@@ -73,6 +73,12 @@ server.delete('/usuarios/:id', async (request, reply) => {
 })
 
 server.listen({
-    host: '0.0.0.0',
-    port: process.env.PORT ?? 3333,
-})
+  host: '0.0.0.0',
+  port: process.env.PORT ?? 3333,
+}, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log(`Server listening at ${address}`);
+});
