@@ -26,9 +26,9 @@ server.addHook('preHandler', async (request, reply) => {
   const allowedOrigins = ['https://thspanhol.github.io'];
   const origin = request.headers.origin;
 
-  if (request.method !== 'GET' && !allowedOrigins.includes(origin)) {
-    reply.code(403).send({ error: 'Origin not allowed' });
-  }
+  //if (request.method !== 'GET' && !allowedOrigins.includes(origin)) {
+  //  reply.code(403).send({ error: 'Origin not allowed' });
+  //}
 });
 
 server.post('/usuarios', async (request, reply) => {
