@@ -6,7 +6,8 @@ const server = fastify();
 
 await server.register(cors, {
   origin: "*",
-  methods: ["GET"],
+  //methods: ["GET"]
+  methods: ["GET","POST","PUT","DELETE"]
 });
 
 const database = new DatabasePostgres();
